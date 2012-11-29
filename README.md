@@ -4,6 +4,8 @@ GGScene
 GGScene manager is an easy to use scene management class. It has plenty of transitions, 
 with more that can be added, and is very easy to use.
 
+Sample video here - http://www.youtube.com/watch?v=_riCrSOjTS0
+
 Basic Usage
 -------------------------
 

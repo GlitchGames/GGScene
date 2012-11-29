@@ -45,6 +45,10 @@ GGScene.Transition.SlideFromRight = "slideFromRight"
 GGScene.Transition.SlideFromLeft = "slideFromLeft"
 GGScene.Transition.SlideFromTop = "slideFromTop"
 GGScene.Transition.SlideFromBottom = "slideFromBottom"
+GGScene.Transition.SlideToRight = "slideToRight"
+GGScene.Transition.SlideToLeft = "slideToLeft"
+GGScene.Transition.SlideToTop = "slideToTop"
+GGScene.Transition.SlideToBottom = "slideToBottom"
 GGScene.Transition.Fade = "fade"
 GGScene.Transition.Crossfade = "crossFade"
 GGScene.Transition.OverFromRight = "overFromRight"
@@ -89,7 +93,7 @@ function GGScene:new( defaultTime, defaultEasing )
    	 
    	self.view = display.newGroup()
    	
-   	Runtime:addEventListener( "enterFrame", self )
+  -- 	Runtime:addEventListener( "enterFrame", self )
    	
     return self
     
@@ -285,7 +289,31 @@ function GGScene:doTransition( effect, nextScene, currentScene, onComplete, time
 			t.onComplete = transitionFinished
 			transitions[ #transitions + 1 ] = transition.to( currentScene.view, t )
 		end
-		
+	
+	elseif effect == GGScene.Transition.SlideToRight then
+	
+		t.x = display.contentWidth
+		t.onComplete = transitionFinished
+		transitions[ #transitions + 1 ] = transition.to( nextScene.view, t )
+	
+	elseif effect == GGScene.Transition.SlideToLeft then
+	
+		t.x = -display.contentWidth
+		t.onComplete = transitionFinished
+		transitions[ #transitions + 1 ] = transition.to( nextScene.view, t )
+
+	elseif effect == GGScene.Transition.SlideToTop then
+	
+		t.y = -display.contentHeight
+		t.onComplete = transitionFinished
+		transitions[ #transitions + 1 ] = transition.to( nextScene.view, t )
+	
+	elseif effect == GGScene.Transition.SlideToBottom then
+	
+		t.y = display.contentHeight
+		t.onComplete = transitionFinished
+		transitions[ #transitions + 1 ] = transition.to( nextScene.view, t )
+			
 	elseif effect == GGScene.Transition.OverFromRight then
 	
 		t.x = display.contentWidth
@@ -934,7 +962,7 @@ function GGScene:closePopup( name, effect, onClose )
 		end
 		
 		if effect then
-			self:doTransition( effect, self.popups[ name ], nil, onComplete, time, easing, data )
+			self:doTransition( effect, self.popups[ name ], nil, onComplete )
 		else
 			onComplete()
 		end
@@ -1069,11 +1097,11 @@ function GGScene:displayInformation( message )
 end
 
 --- Updates the current scene.
-function GGScene:enterFrame( event )
-	if self.currentScene and self.currentScene.isReady and self.currentScene[ "onUpdate" ] then
-		self.currentScene:onUpdate( event )
-	end
-end
+--function GGScene:enterFrame( event )
+--	if self.currentScene and self.currentScene.isReady and self.currentScene[ "onUpdate" ] then
+--		self.currentScene:onUpdate( event )
+--	end
+--end
 
 --- Destroys this GGScene object.
 function GGScene:destroy()

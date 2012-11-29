@@ -1,0 +1,22 @@
+settings = 
+{
+	orientation = 
+	{
+		default = "portrait",
+		supported = 
+		{ 
+			"portrait", "portraitUpsideDown" 
+		}
+	},
+	
+	iphone = 
+	{
+		plist = 
+		{
+			CFBundleDisplayName = "GGScene",
+			UIStatusBarHidden = true,
+			UIPrerenderedIcon = true,
+			UIApplicationExitsOnSuspend = false,
+		}
+	}
+}

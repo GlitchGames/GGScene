@@ -54,9 +54,9 @@ function PopupC:onCreate( data )
 end
 
 --- Called in the enterFrame event.
---function PopupC:onUpdate( event )
+function PopupC:onUpdate( event )
 
---end
+end
 
 --- Called when the scene is about to get loaded.
 function PopupC:onLoad()

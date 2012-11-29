@@ -93,7 +93,7 @@ function GGScene:new( defaultTime, defaultEasing )
    	 
    	self.view = display.newGroup()
    	
-  -- 	Runtime:addEventListener( "enterFrame", self )
+   	Runtime:addEventListener( "enterFrame", self )
    	
     return self
     
@@ -1097,11 +1097,16 @@ function GGScene:displayInformation( message )
 end
 
 --- Updates the current scene.
---function GGScene:enterFrame( event )
---	if self.currentScene and self.currentScene.isReady and self.currentScene[ "onUpdate" ] then
---		self.currentScene:onUpdate( event )
---	end
---end
+function GGScene:enterFrame( event )
+	if self.currentScene and self.currentScene.isReady and self.currentScene[ "onUpdate" ] then
+		self.currentScene:onUpdate( event )
+	end
+	for k, v in pairs( self.popups ) do
+		if v and v.isReady and v[ "onUpdate" ] then
+			v:onUpdate( event )
+		end
+	end
+end
 
 --- Destroys this GGScene object.
 function GGScene:destroy()

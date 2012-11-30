@@ -1065,7 +1065,11 @@ function GGScene:destroyScene( scene )
 		if scene.view then
 			display.remove( scene.view )
 		end
-	
+		
+		if package.loaded[ scene.name ] then
+			package.loaded[ scene.name ] = nil
+		end
+			
 		scene.view = nil
 		scene.sceneManager = nil
 		scene.name = nil

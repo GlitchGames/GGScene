@@ -181,9 +181,9 @@ end
 function GGScene:gotoPreviousScene( data )
 	if self.previousSceneName then
 		if self.previousEffect then
-			self:gotoScene( self.previousSceneName, self:flipTransition( self.previousEffect ), data )
+			self:gotoScene( self.previousSceneName, self:flipTransition( self.previousEffect ), nil, nil, data or self.previousData )
 		else
-			self:gotoScene( self.previousSceneName, nil, data )
+			self:gotoScene( self.previousSceneName, nil, nil, nil, data or self.previousData )
 		end
 	end
 end
@@ -871,6 +871,7 @@ function GGScene:gotoScene( name, effect, time, easing, data )
 	
 	self.previousSceneName = self:getCurrentSceneName()
 	self.previousEffect = effect
+	self.previousData = data
 	
 	local scene = self:createScene( name, data )
 		

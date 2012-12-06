@@ -980,6 +980,12 @@ function GGScene:closeAllPopups( effect )
 	end
 end
 
+--- Gets the current scene.
+-- @return The scene.
+function GGScene:getCurrentScene()
+	return self.currentScene
+end
+
 --- Gets the name of the current scene.
 -- @return The name of the scene.
 function GGScene:getCurrentSceneName()

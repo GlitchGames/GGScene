@@ -872,7 +872,7 @@ function GGScene:gotoScene( name, effect, time, easing, data )
 	self.previousSceneName = self:getCurrentSceneName()
 	self.previousEffect = effect
 	
-	local scene = self:createScene( name )
+	local scene = self:createScene( name, data )
 		
 	if scene then
 	
@@ -993,7 +993,7 @@ end
 
 --- Creates a scene. Called internally.
 -- @param name The name of the scene to create.
-function GGScene:createScene( name )
+function GGScene:createScene( name, data )
 	
 	if name then
 		
